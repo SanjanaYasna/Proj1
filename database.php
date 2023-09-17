@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "logins";
+$dbname = "login";
 $user = "root";
 $pwd = "";
 $sqlout = new mysqli($host, $user, $pwd, $dbname);

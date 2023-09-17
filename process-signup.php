@@ -1,6 +1,7 @@
 <?php
 if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
-    die("Valid email required");
+    header("Location: tryOtherEmail.html");
+    //die("Valid email required");
 }
 $pwd_hash = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
