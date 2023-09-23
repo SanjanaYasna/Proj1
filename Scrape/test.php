@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
@@ -62,6 +61,11 @@ body {
   background: #ccc;
 }
 
+.center {
+  margin: auto;
+  width: 30%;
+}
+
 @media screen and (max-width: 600px) {
   .topnav .search-container {
     float: none;
@@ -81,22 +85,29 @@ body {
 </style>
 </head>
 <body>
-  <py-script src="./keyFoods.py"></py-script>
-<div class="topnav">
-  <a class="active" href="keyFoodsScrape.html">Home</a>
-  <a href="keyFoodsDailyScrape.html">Daily Scrape</a>
-  <div class="search-container">
-    <form method="post" class="form">
-      <input type="search" placeholder="Shrimp chips..." name="search" id="key_Foods_Search">
-      <button type="submit"  pys-onClick="find()">Search</button>
-    </form>
-  </div>
+
+
+  <div class="topnav">
+    <a class="active" href="keyFoodsScrape.html">Home</a>
+    <a href="keyFoodsDailyScrape.html">Daily Scrape</a>
+    <div class="search-container">
+<form method="post" >
+  <input type="text"  name="test-input"/>
+  <button value="submt" type="submit" name="submit">OK</button>
+</form>
+</div>
 </div>
 <div style="padding-left:16px" id = "product-test">
   <h2>Responsive Results Table</h2>
-  <p id = "product-test"></p>
 </div>
-<div id="test-output"></div>
-
-</body>
+  <div class="center"  >
+    <p id="test-output"></p>
+  </div>
+  <?php
+if(  isset($_POST["submit"]) ){
+  if (empty($_POST["test-input"])) echo "Must enter input to get search results";
+  else echo "recieved";
+}
+?>
+  </body>
 </html>
