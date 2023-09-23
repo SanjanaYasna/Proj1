@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
@@ -80,21 +81,22 @@ body {
 </style>
 </head>
 <body>
-
+  <py-script src="./keyFoods.py"></py-script>
 <div class="topnav">
-  <a class="active" href="#home">Home</a>
+  <a class="active" href="keyFoodsScrape.html">Home</a>
   <a href="keyFoodsDailyScrape.html">Daily Scrape</a>
   <div class="search-container">
-    <form action="./searchKeyFoods/">
-      <input type="search" placeholder="Search.." name="search" id="key_Foods_Search">
-      <button onclick="searchKeyFoods()">Search</button>
+    <form method="post" class="form">
+      <input type="search" placeholder="Shrimp chips..." name="search" id="key_Foods_Search">
+      <button type="submit"  pys-onClick="find()">Search</button>
     </form>
   </div>
 </div>
-
-<div style="padding-left:16px">
-  <h2>Responsive Search Bar</h2>
+<div style="padding-left:16px" id = "product-test">
+  <h2>Responsive Results Table</h2>
+  <p id = "product-test"></p>
 </div>
+<div id="test-output"></div>
 
 </body>
 </html>
