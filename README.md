@@ -9,7 +9,8 @@
 <br>
 
 ## Catalog System:
-<img width="1792" alt="catalog" src="https://github.com/SanjanaYasna/Proj1/assets/124063580/512be2a2-4d75-4ccb-92eb-d80468eb7287">
+<img width="1792" alt="catalog" src="https://github.com/SanjanaYasna/Proj1/assets/124063580/47194949-6a75-4c91-a618-e3ab77d7b2c7">
+
 
 <br>
 
