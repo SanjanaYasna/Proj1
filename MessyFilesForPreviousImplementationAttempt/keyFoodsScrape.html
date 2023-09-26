@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<py-env>
+  - requests
+</py-env>
 <style>
 * {box-sizing: border-box;}
 
@@ -84,16 +89,33 @@ body {
 }
 </style>
 </head>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script>
+<script type="text/javascript">
+  async function main() {
+    let pyodide = await loadPyodide();
+    await pyodide.loadPackage("micropip");
+    const micropip = pyodide.pyimport("micropip");
+    await micropip.install("snowballstemmer");
+    await pyodide.runPython(`
+    import snowballstemmer
+    stemmer = snowballstemmer.stemmer('english')
+    print(stemmer.stemWords('go goes going gone'.split()))
+  `);
+  }
+  main();
+</script>
 <body>
-
+  <py-script src="./keyFoods.py">
+    from bs4 import BeautifulSoup
+  </py-script>
 
   <div class="topnav">
     <a class="active" href="keyFoodsScrape.html">Home</a>
     <a href="keyFoodsDailyScrape.html">Daily Scrape</a>
     <div class="search-container">
-<form method="post" >
-  <input type="text"  name="test-input"/>
-  <button value="submt" type="submit" name="submit">OK</button>
+  <form method="post" class="form"></form>
+  <input type="text" id="test-input"/>
+  <button id="submit-button" type="submit" pys-onClick="find">OK</button>
 </form>
 </div>
 </div>
@@ -103,11 +125,5 @@ body {
   <div class="center"  >
     <p id="test-output"></p>
   </div>
-  <?php
-if(  isset($_POST["submit"]) ){
-  if (empty($_POST["test-input"])) echo "Must enter input to get search results";
-  else echo "recieved";
-}
-?>
   </body>
 </html>

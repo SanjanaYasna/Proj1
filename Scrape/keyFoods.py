@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from bs4 import BeautifulSoup
+import requests
 import sys
 query = sys.argv[1]
 URL = "https://www.keyfood.com/store/keyFood/en/search/?text=" + query
@@ -17,6 +18,8 @@ for product in soup.find_all('h3', class_ = productName, limit = 8):
     product = product.replace('</h3>', '')
     productOutput.add(product)
     count = len(productOutput)
+print(productOutput)
+
         
         
   

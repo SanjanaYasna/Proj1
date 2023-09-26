@@ -91,66 +91,45 @@ body {
 
 
   <div class="topnav">
-    <a class="active" href="keyFoodsScrape.html">Home</a>
+    <a class="active" href="keyFoodsScrape.php">Home</a>
     <a href="dailyScrape.php">Daily Scrape</a>
-    <div class="search-container">
-  <form method="post" class="form" action ="<?php echo $_SERVER["PHP_SELF"]; ?>" >
-  <input type="text" id="test-input" name="test-input"/>
-  <button id="submit-button" type="submit" name="Submit">OK</button>
-</form>
 </div>
-</div>
-<div style="padding-left:16px" id = "product-test">
-  <h2>Responsive Results Table</h2>
-</div>
-  <div class="center"  >
-    <p id="test-output"></p>
-  </div>
-  <?php
-$product ="";
-$display_results = ""; //results from a query, in the rform of a table outlined in function below
-$display_values= array();
-$item_number = 0;
+<div style="padding-left:16px" id = "monitor">
+    <h2>Items monitored:</h2>
+    <p>Each of these items are scraped regularily at 11 am every day to monitor for price or availability</p>
+<?php
+include 'addtoSql.php';
+$user = 'root';
+$host = "localhost";
+$dbname = "login";
+$user = "root";
+$pwd = "";
 
-if(isset($_POST['submit'])) {
-  $display_results .= "<h2> Search Results </h2>";
-  $display_results .= '
-  <table class= "table table-dark table-striped">
+$conn = new mysqli($host, $user, $pwd, $dbname);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+?>
+<table class="table">
   <thead>
     <tr>
-      <th scope="col">Item #</th>
-      <th scope="col">Item Title</th>
-      <th scope="col">Add to "Daily Scrape"</th>
+      <th scope="col">User</th>
+      <th scope="col">Store</th>
+      <th scope="col">Item_Nam</th>
     </tr>
   </thead>
-  <tbody>';
-  foreach ($display_values as $value) { //add each of the results to table for output
-    $display_results .= '<tr>
-      <th scope="row">'.($item_number++).'</th>'.
-      '<td >'.$value.'</td>'.
-      '<td><form method="post" action="addtoSql.php">'.
-      '<button type="submit" class="btn btn-success" name="keyFoods" value="'.$value.">Add to Scrapes</button>".
-      "</form>
-      </td>
-  </tr>";
+  <tbody>
+<?php
+$query = "SELECT User, Store, Item_Name from ItemDB WHERE User = '$currUser' ";
+$print = mysqli_query($conn, $query);
+while($row = mysqli_fetch_assoc($print)) {
+  echo "<tr>
+  <td>".$row["User"]. "</td>".
+  "<td>".$row["Store"]. "</td>".
+  "<td>".$row["Item_Name"]. "</td>";
 }
-$display_results .= '</tbody>
-</table>'; 
-}
+    ?>
+  </tbody>
+</table>
+</div>
 
-
-if(  isset($_POST["Submit"]) ){
-  if (empty($_POST["test-input"])) echo "Must enter input to get search results";
-  else {
-    $product=$_POST["test-input"];
-    $queryOut = shell_exec("python3 ./keyFoods.py $product");
-    //print_r($queryOut)
-    $display_values = $queryOut; //make product outputs part of array
-}
-}
-
-echo $display_results;
-?>
-
-  </body>
-</html>
