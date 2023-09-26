@@ -1,4 +1,5 @@
 # Scraping Items and Prices
+Project made to allow you to scrape online store websites of your choice (currently still building on such options) and add them to a table where such items are scraped periodically for price monitoring/item availability
 
 ## Signup and Login System:
 <img width="669" alt="login" src="https://github.com/SanjanaYasna/Proj1/assets/124063580/2e8f3151-7e1d-48e2-9d68-d6453fda6640">
