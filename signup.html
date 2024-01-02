@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Sign Up Page</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+
+</head>
+
+<body>
+    <h1>Signup</h1>
+    <form action="process-signup.php" method="post">
+        <div>
+            <label for="name">Enter your name:</label>
+            <input type="text" id="name" name="name" title="everyone has a name" required>
+        </div>
+        <div>
+            <label for="email" novalidate>Enter your email:</label>
+            <input type="email" id="email" name="email" title="Must end with @gmail.com" required>
+        </div>
+        <div>
+            <label for="pwd">Make a password:</label>
+            <input type="password" id="pwd" name="pwd" required>
+        </div>
+        <div>
+            <label for=confirm_pwd>Repeat password:</label>
+            <input type=password id="confirm_pwd" name="confirm_pwd" required>
+        </div>
+        <button>Sign up</button>
+    </form>
+    <p>Already have an accoutn?</p><a href="login.php" target = "_blank"> Login </a>
+</body>
+</body>
+
+</html>
+
